@@ -1,0 +1,65 @@
+.about {
+  background: var(--color-bg);
+}
+
+.about-bio {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.experience-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.experience-header h3 {
+  font-size: 1.1rem;
+}
+
+.experience-period {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.experience-company {
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  margin: 6px 0 12px;
+}
+
+.experience-summary {
+  line-height: 1.55;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-group h4 {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

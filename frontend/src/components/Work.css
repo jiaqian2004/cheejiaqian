@@ -1,0 +1,30 @@
+.work {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  display: block;
+}
+
+.project-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.project-card p {
+  line-height: 1.55;
+}
