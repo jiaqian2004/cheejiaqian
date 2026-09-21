@@ -17,7 +17,7 @@ An interactive personal portfolio built with **React, TypeScript and Three.js**.
 - **Small custom router** — client-side navigation on the History API (`frontend/src/lib/router.ts`), with hash links that scroll to the right section or project. No routing library.
 - **Responsive** — layouts use `vw` / `clamp()` and were checked from phone widths up to 2560px.
 - **Fast images** — all pictures are WebP (about 100 KB each instead of 1–2 MB PNGs).
-- **Downloadable resume** — the navbar's Resume button downloads `frontend/public/resume/resume.pdf`.
+- **Downloadable resume** — the navbar's Resume button downloads `frontend/public/resume/cheejiaqian_Resume.pdf`.
 
 ## Tech stack
 
@@ -58,7 +58,7 @@ frontend/
 ├── public/                  Static files, served from the site root
 │   ├── img/                 Images (WebP)
 │   ├── models/main.glb      3D character for the hero
-│   ├── resume/resume.pdf    File behind the Resume button
+│   ├── resume/cheejiaqian_Resume.pdf   File behind the Resume button
 │   └── favicon.png, apple-touch-icon.png
 └── src/
     ├── pages/               HomePage, ProjectsPage
@@ -77,7 +77,7 @@ Almost everything you see on the site is data in `frontend/src/content/siteConte
 
 - **Add a project:** append an entry to `projects` with a unique `slug`, a `category`, a `stack`, a `description`, an optional `image` and a list of `links` (`demo` or `github`). It appears on `/projects` automatically; the home page shows the first three.
 - **Add or change an image:** put a `.webp` file in `frontend/public/img/` and reference it as `/img/your-file.webp`. Keep the file name's capitalisation identical to the reference — the dev server and Linux hosts are case-sensitive.
-- **Change the resume:** replace `frontend/public/resume/resume.pdf`. Visitors save it as `cheejiaqian_Resume.pdf`; that name is set by `RESUME_DOWNLOAD_NAME` in `frontend/src/components/Navbar.tsx`.
+- **Change the resume:** replace `frontend/public/resume/cheejiaqian_Resume.pdf`. Keep the file name identical to `RESUME_FILENAME` in `frontend/src/components/Navbar.tsx`: the name visitors save it as comes from the file name (hosts like Vercel send it in a `Content-Disposition` header, which browsers prefer over the link's `download` attribute).
 
 ## Deployment
 

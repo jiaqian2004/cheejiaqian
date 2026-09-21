@@ -3,9 +3,11 @@ import { usePathname } from '../lib/router'
 import Link from './Link'
 import './Navbar.css'
 
-// The file served from public/, and the name the visitor's browser saves it as.
-const RESUME_URL = '/resume/resume.pdf'
-const RESUME_DOWNLOAD_NAME = 'cheejiaqian_Resume.pdf'
+// The file in public/resume/. Its own name is what visitors save it as: hosts such as
+// Vercel send a Content-Disposition header built from the file name, and browsers
+// prefer that over the `download` attribute, so the two must be the same.
+const RESUME_FILENAME = 'cheejiaqian_Resume.pdf'
+const RESUME_URL = `/resume/${RESUME_FILENAME}`
 
 // `to` uses absolute paths ("/#about") so the links also work from other pages.
 // `hideOnMobile` links are dropped on narrow screens, where the bar can't fit them all.
@@ -37,7 +39,7 @@ export default function Navbar() {
           </li>
         ))}
         <li>
-          <a className="navbar-resume-btn" href={RESUME_URL} download={RESUME_DOWNLOAD_NAME}>
+          <a className="navbar-resume-btn" href={RESUME_URL} download={RESUME_FILENAME}>
             Resume
           </a>
         </li>

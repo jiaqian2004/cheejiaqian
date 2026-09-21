@@ -23,7 +23,7 @@ frontend/
   public/               - static files served as-is, at the site root
     img/                - images (WebP; see Conventions)
     models/main.glb     - the 3D character used by the Hero section
-    resume/resume.pdf   - the file behind the "Resume" download button
+    resume/cheejiaqian_Resume.pdf - the file behind the "Resume" download button (its file name IS the download name; keep it equal to RESUME_FILENAME in Navbar.tsx)
     favicon.png, apple-touch-icon.png
   src/
     main.tsx, App.tsx   - entry; App picks the page from the URL
@@ -49,7 +49,7 @@ frontend/
 - Responsive design: any visual layout change must be checked across multiple
   viewport widths (e.g. laptop ~1440px, common desktop ~1920px, larger
   monitor ~2560px+), not just the width of whichever screen it was built on.
-  Prefer relative units (`vw`/`vh`/`%`, `clamp()`) over fixed `px`/`rem` for
+  Prefer relative units (`vw`/`vh`/`%`, `clamp()`) over fixed `px`/`rem` for 
   sizes and positions in layouts that need to hold up across screen sizes.
   Verify visually (e.g. via a headless browser screenshot at a few widths)
   before considering a UI change done.
