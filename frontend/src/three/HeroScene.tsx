@@ -11,7 +11,9 @@ const MOBILE_QUERY = '(max-width: 768px)'
 export default function HeroScene() {
   const isInteractingRef = useRef(false)
   const resumeTimeoutRef = useRef<number | undefined>(undefined)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   // Drag-to-orbit competes with page scroll on touch screens, so it's
   // disabled below the breakpoint; the idle auto-rotation keeps running either way.
@@ -21,6 +23,19 @@ export default function HeroScene() {
     update()
     mediaQuery.addEventListener('change', update)
     return () => mediaQuery.removeEventListener('change', update)
+  }, [])
+
+  // R3F renders every frame by default even when off-screen, which fights
+  // the browser for the main thread during scroll. Pausing the render loop
+  // (frameloop="never") whenever the canvas scrolls out of view avoids that.
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      threshold: 0,
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   const handleDragStart = () => {
@@ -35,10 +50,16 @@ export default function HeroScene() {
   }
 
   return (
-    <div className="hero-canvas-wrapper">
-      <Canvas camera={{ position: [0, 1.1, 4.8], fov: 42 }} gl={{ alpha: true }}>
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[3, 5, 2]} intensity={1.3} />
+    <div className="hero-canvas-wrapper" ref={wrapperRef}>
+      <Canvas
+        camera={{ position: [0, 1.35, 4.2], fov: 35 }}
+        gl={{ alpha: true }}
+        dpr={[1, 1.5]}
+        frameloop={isVisible ? 'always' : 'never'}
+      >
+        <ambientLight intensity={1.2} />
+        <directionalLight position={[3, 5, 2]} intensity={2} />
+        <directionalLight position={[-3, 2, 4]} intensity={1} />
         <pointLight position={[-2.5, 1.5, -1.5]} intensity={2} color="#a8e63a" />
         <pointLight position={[2.5, 0.5, -2]} intensity={1.2} color="#ff8a1e" />
         <Suspense fallback={null}>
@@ -46,6 +67,7 @@ export default function HeroScene() {
         </Suspense>
         <OrbitControls
           makeDefault
+          target={[0, 1.15, 0]}
           enablePan={false}
           enableZoom={false}
           enableRotate={!isMobile}

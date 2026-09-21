@@ -1,0 +1,109 @@
+.projects-page {
+  min-height: 100svh;
+  background: var(--color-bg);
+}
+
+/* Wider than the home sections so three cards sit comfortably side by side. */
+.projects-page .section-inner {
+  max-width: 1240px;
+}
+
+.page-subtitle {
+  margin: -16px 0 56px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 28px;
+}
+
+.project-tile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  /* Keeps the card clear of the fixed navbar when jumped to via /projects#slug. */
+  scroll-margin-top: 96px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hovered, or the one a "Read more" link just jumped to. */
+.project-tile:hover,
+.project-tile[data-hash-target] {
+  border-color: var(--color-tech-accent);
+  box-shadow: 0 0 28px rgba(141, 255, 63, 0.2);
+}
+
+.project-tile-media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, #1f2a17, var(--color-surface));
+}
+
+.project-tile-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Top-right: the preview images keep their own titles in the top-left corner. */
+.project-tile-number {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.82);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.project-tile-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px 26px 26px;
+}
+
+.project-tile-body h2.project-tile-title {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.project-tile-category {
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+.project-tile-description {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* Compact chips so projects with many technologies don't make the card too tall. */
+.project-tile .skill-tag {
+  padding: 3px 10px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .page-subtitle {
+    margin-bottom: 40px;
+  }
+}

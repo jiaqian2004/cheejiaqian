@@ -4,9 +4,10 @@
   left: 0;
   right: 0;
   z-index: 50;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
   padding: 20px 32px;
   background: rgba(17, 17, 17, 0.7);
   backdrop-filter: blur(8px);
@@ -17,6 +18,18 @@
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   color: var(--color-text-primary);
+  justify-self: start;
+}
+
+.navbar-email {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  justify-self: center;
+  transition: color 0.2s ease;
+}
+
+.navbar-email:hover {
+  color: var(--color-primary);
 }
 
 .navbar-links {
@@ -25,17 +38,57 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  justify-self: end;
 }
 
 .navbar-links a {
   font-size: 0.85rem;
   letter-spacing: 0.06em;
+  white-space: nowrap;
   color: var(--color-text-secondary);
   transition: color 0.2s ease;
 }
 
-.navbar-links a:hover {
+.navbar-links a:hover,
+.navbar-links a[aria-current='page'] {
   color: var(--color-primary);
+}
+
+.navbar-links a.navbar-resume-btn {
+  background: var(--color-accent);
+  color: #111111;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar-resume-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(255, 138, 30, 0.5);
+}
+
+/*
+ * The centred email only stays centred (and clear of the links) while the bar
+ * is wide enough; below that it is dropped so nothing gets pushed off-screen.
+ */
+@media (max-width: 1279px) {
+  .navbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .navbar-email {
+    display: none;
+  }
+}
+
+/* Not enough room for every link, so the less important ones are hidden. */
+@media (max-width: 800px) {
+  .navbar-hide-mobile {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -44,6 +97,35 @@
   }
 
   .navbar-links {
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .navbar-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  .navbar-links a.navbar-resume-btn {
+    padding: 5px 12px;
+  }
+}
+
+/* Very small phones: tighten a bit more so Resume doesn't get clipped. */
+@media (max-width: 400px) {
+  .navbar {
+    padding: 16px 14px;
+  }
+
+  .navbar-links {
+    gap: 8px;
+  }
+
+  .navbar-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar-links a.navbar-resume-btn {
+    padding: 5px 10px;
   }
 }

@@ -1,28 +1,58 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
-  background: radial-gradient(ellipse at 60% 50%, #1c1c1c 0%, #111111 65%);
+  background: radial-gradient(ellipse at 50% 45%, #1c2417 0%, #111111 68%);
 }
 
 .hero-glow {
-  position: absolute;
-  top: 50%;
-  right: 12%;
-  width: 520px;
-  height: 520px;
-  transform: translate(30%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(168, 230, 58, 0.35) 0%,
-    rgba(255, 138, 30, 0.18) 45%,
-    transparent 72%
-  );
-  filter: blur(60px);
+  transform: translate(-50%, -50%);
   z-index: 0;
   pointer-events: none;
+}
+
+.hero-glow-center {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: clamp(600px, 20vw, 600px);
+  height: clamp(600px, 20vw, 600px);
+  background: radial-gradient(
+    circle,
+    rgba(168, 230, 58, 0.28) 0%,
+    rgba(255, 138, 30, 0.14) 35%,
+    transparent 75%
+  );
+  filter: blur(95px);
+}
+
+.hero-glow-a {
+  position: fixed;
+  top: 18%;
+  width: clamp(600px, 20vw, 600px);
+  height: clamp(600px, 20vw, 600px);
+  background: radial-gradient(
+    circle,
+    rgba(168, 230, 58, 0.4) 0%,
+    rgba(168, 230, 58, 0.12) 45%,
+    transparent 101%
+  );
+  filter: blur(90px);
+}
+
+.hero-glow-b {
+  position: fixed;
+  top: 90%;
+  left: 101%;
+  width: clamp(400px, 25vw, 400px);
+  height: clamp(400px, 25vw, 400px);
+  background: radial-gradient(
+    circle,
+    rgba(168, 230, 58, 0.38) 0%,
+    rgba(168, 230, 58, 0.1) 45%,
+    transparent 75%
+  );
+  filter: blur(1.2rem);
 }
 
 .hero-canvas-wrapper {
@@ -31,104 +61,79 @@
   z-index: 1;
 }
 
-.hero-content {
-  position: relative;
+.hero-text-left {
+  position: absolute;
+  left: 5vw;
+  top: 40%;
+  transform: translateY(-50%);
   z-index: 2;
-  max-width: 540px;
-  padding-left: 64px;
 }
 
 .hero-greeting {
   color: var(--color-primary);
-  font-size: 1.15rem;
+  font-size: clamp(1.5rem, 1.3vw + 1rem, 2.6rem);
   font-weight: 600;
   text-shadow: 0 0 16px rgba(168, 230, 58, 0.55);
   margin-bottom: 8px;
 }
 
 .hero-name {
-  font-size: 3.4rem;
-  line-height: 1.1;
-  margin-bottom: 14px;
+  font-size: clamp(2.1rem, 2.4vw + 1.2rem, 3.4rem);
+  line-height: 1.15;
+  max-width: 26vw;
 }
 
-.hero-tagline {
-  font-size: 1.15rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 32px;
-}
-
-.hero-resume-btn {
-  display: inline-block;
-  background: var(--color-accent);
-  color: #111111;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 14px 32px;
-  border-radius: 999px;
-  box-shadow: 0 0 24px rgba(255, 138, 30, 0.45);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.hero-resume-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 34px rgba(255, 138, 30, 0.6);
-}
-
-.hero-social-card {
+.hero-text-right {
   position: absolute;
-  left: 32px;
-  bottom: 32px;
+  left: 69%;
+  right: 3vw;
+  top: 58%;
+  transform: translateY(-50%);
   z-index: 2;
-  display: flex;
-  gap: 18px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: 14px 22px;
-  border-radius: 14px;
+  text-align: left;
 }
 
-.hero-social-card a {
-  color: var(--color-text-secondary);
-  display: flex;
-  transition:
-    color 0.2s ease,
-    filter 0.2s ease;
+.hero-text-right h2 {
+  font-size: clamp(1.8rem, 1.3vw + 1.2rem, 3.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: normal;
+  overflow-wrap: break-word;
+  margin: 0;
 }
 
-.hero-social-card a:hover {
-  color: var(--color-tech-accent);
-  filter: drop-shadow(0 0 6px var(--color-tech-accent));
+.hero-text-right h2:first-child {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-text-right h2:last-child {
+  color: var(--color-text-primary);
 }
 
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 110px;
-    text-align: center;
+  .hero-text-left {
+    left: 24px;
+    top: 14%;
+    transform: none;
   }
 
-  .hero-canvas-wrapper {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: 300px;
-    order: 2;
-    margin-top: 12px;
+  .hero-name {
+    font-size: 2.1rem;
   }
 
-  .hero-content {
-    order: 1;
-    max-width: 100%;
-    padding: 0 24px;
+  .hero-text-right {
+    left: 24px;
+    right: 24px;
+    top: auto;
+    bottom: 32%;
+    transform: none;
   }
 
-  .hero-social-card {
-    position: static;
-    order: 3;
-    margin: 24px auto 32px;
+  .hero-text-right h2 {
+    font-size: 1.8rem;
+    white-space: normal;
   }
 }

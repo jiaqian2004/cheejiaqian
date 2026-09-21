@@ -1,17 +1,24 @@
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Work from './components/Work'
-import Contact from './components/Contact'
+import Sidebar from './components/Sidebar'
+import { scrollToHash, usePathname } from './lib/router'
+import HomePage from './pages/HomePage'
+import ProjectsPage from './pages/ProjectsPage'
 
 function App() {
+  const pathname = usePathname()
+
+  // The browser tries to scroll to a URL hash before React has rendered the
+  // page, so a shared link like /projects#smart-home-iot needs a second pass.
+  useEffect(() => {
+    if (window.location.hash) requestAnimationFrame(scrollToHash)
+  }, [])
+
   return (
     <>
       <Navbar />
-      <Hero />
-      <About />
-      <Work />
-      <Contact />
+      <Sidebar />
+      {pathname === '/projects' ? <ProjectsPage /> : <HomePage />}
     </>
   )
 }

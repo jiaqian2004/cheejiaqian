@@ -4,6 +4,45 @@
   text-align: center;
 }
 
+/*
+ * Wider than the other sections so the side characters can be big. The fixed
+ * side padding keeps the left one clear of the fixed social sidebar (~60px wide)
+ * without eating into the image size on very wide screens.
+ */
+.contact .section-inner {
+  max-width: 1500px;
+  padding-inline: 80px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 440px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 3vw, 48px);
+}
+
+.contact-art {
+  width: min(100%, clamp(220px, 26vw, 440px));
+  height: auto;
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.45));
+}
+
+/* Each character sits next to the text rather than out at the page edge. */
+.contact-art--left {
+  justify-self: end;
+}
+
+.contact-art--right {
+  justify-self: start;
+}
+
+.contact-name {
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 12px 0 20px;
+}
+
 .contact-lead {
   max-width: 480px;
   margin: 0 auto 36px;
@@ -35,4 +74,39 @@
 .contact-links a:hover {
   border-color: var(--color-tech-accent);
   box-shadow: 0 0 20px rgba(141, 255, 63, 0.25);
+}
+
+/* Not enough width for three columns: text on top, the two characters side by side below. */
+@media (max-width: 1024px) {
+  .contact .section-inner {
+    padding-inline: 20px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+  }
+
+  .contact-content {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .contact-art {
+    width: min(100%, 260px);
+  }
+
+  .contact-art--left,
+  .contact-art--right {
+    justify-self: center;
+  }
+}
+
+.site-footer {
+  margin: 64px 0 0;
+  padding: 24px 32px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
 }

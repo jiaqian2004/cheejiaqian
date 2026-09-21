@@ -1,24 +1,42 @@
 import { siteContent } from '../content/siteContent'
+import { usePathname } from '../lib/router'
+import Link from './Link'
 import './Navbar.css'
 
+// `to` uses absolute paths ("/#about") so the links also work from other pages.
+// `hideOnMobile` links are dropped on narrow screens, where the bar can't fit them all.
 const NAV_LINKS = [
-  { href: '#about', label: 'ABOUT' },
-  { href: '#work', label: 'WORK' },
-  { href: '#contact', label: 'CONTACT' },
+  { to: '/#about', label: 'ABOUT ME' },
+  { to: '/#skills', label: 'SKILLS', hideOnMobile: true },
+  { to: '/#work', label: 'WORK', hideOnMobile: true },
+  { to: '/projects', label: 'PROJECTS' },
+  { to: '/#contact', label: 'CONTACT' },
 ]
 
 export default function Navbar() {
+  const pathname = usePathname()
+
   return (
     <nav className="navbar">
-      <a href="#top" className="navbar-logo">
+      <Link to="/#top" className="navbar-logo">
         {siteContent.initials}
+      </Link>
+      <a href={`mailto:${siteContent.social.email}`} className="navbar-email">
+        {siteContent.social.email}
       </a>
       <ul className="navbar-links">
         {NAV_LINKS.map((link) => (
-          <li key={link.href}>
-            <a href={link.href}>{link.label}</a>
+          <li key={link.to} className={link.hideOnMobile ? 'navbar-hide-mobile' : undefined}>
+            <Link to={link.to} aria-current={link.to === pathname ? 'page' : undefined}>
+              {link.label}
+            </Link>
           </li>
         ))}
+        <li>
+          <a className="navbar-resume-btn" href="/resume/resume.pdf" download>
+            Resume
+          </a>
+        </li>
       </ul>
     </nav>
   )

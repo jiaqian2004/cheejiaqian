@@ -3,28 +3,197 @@
   border-top: 1px solid var(--color-border);
 }
 
-.project-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.project-card {
+.work-title-accent {
   display: block;
 }
 
-.project-card h3 {
-  font-size: 1.15rem;
-  margin-bottom: 14px;
+/*
+ * The title stays in the middle column so it lines up with the timeline; the
+ * character sits in the right column beside it (the left column is just a
+ * balancing spacer).
+ */
+.work-heading {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
-.project-stack {
+.section-inner .work-heading .section-title {
+  grid-column: 2;
+  margin-bottom: 0;
+}
+
+.work-character {
+  grid-column: 3;
+  justify-self: start;
+  height: clamp(170px, 13vw, 280px);
+  width: auto;
+  margin-left: clamp(16px, 3vw, 56px);
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45));
+}
+
+/*
+ * --timeline-length / --timeline-progress are written by useTimelineScroll as
+ * the user scrolls. The line grows downward from the top and the glowing dot
+ * rides at its tip (there is no full-length track behind it).
+ */
+.timeline {
+  --timeline-x: 50%;
+  --timeline-length: 0px;
+  --timeline-progress: 0;
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  left: var(--timeline-x);
+  width: 2px;
+  height: var(--timeline-length);
+  transform: translateX(-50%);
+}
+
+.timeline-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--timeline-progress) * 100%);
+  background: linear-gradient(to bottom, transparent, var(--color-tech-accent) 90px);
+}
+
+.timeline-dot {
+  position: absolute;
+  top: calc(var(--timeline-progress) * 100%);
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-tech-accent);
+  box-shadow:
+    0 0 0 5px rgba(141, 255, 63, 0.18),
+    0 0 36px 14px rgba(141, 255, 63, 0.35);
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 40px 0;
+}
+
+/* Rows the dot hasn't reached yet stay dimmed; the timeline alone lights them up. */
+.timeline-row > * {
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+.timeline-row.is-reached > * {
+  opacity: 1;
+}
+
+.timeline-left {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-right: clamp(32px, 4vw, 72px);
 }
 
-.project-card p {
-  line-height: 1.55;
+.timeline-role h3 {
+  font-size: clamp(1.2rem, 1vw + 0.9rem, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.timeline-role p {
+  margin-top: 8px;
+  color: var(--color-primary);
+}
+
+.timeline-year {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.timeline-year-value {
+  display: block;
+  font-size: clamp(2.2rem, 3vw + 1rem, 3.6rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.timeline-period {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+.timeline-summary {
+  padding-left: clamp(32px, 4vw, 72px);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  /* Not enough width for a balancing spacer: centre the title + character as one group. */
+  .work-heading {
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .section-inner .work-heading .section-title,
+  .work-character {
+    grid-column: auto;
+  }
+
+  .work-character {
+    height: clamp(120px, 34vw, 170px);
+    margin-left: 0;
+  }
+
+  /* Line sits left of the content and clears the fixed social sidebar. */
+  .timeline {
+    --timeline-x: 38px;
+  }
+
+  .timeline-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+    row-gap: 14px;
+    padding: 32px 0 32px 56px;
+  }
+
+  .timeline-left {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 14px;
+    padding-right: 0;
+  }
+
+  .timeline-year {
+    text-align: left;
+  }
+
+  .timeline-summary {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-row > * {
+    transition: none;
+  }
 }

@@ -1,0 +1,8 @@
+/* Buttons stay pinned to the bottom so cards of different heights line up. */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+}

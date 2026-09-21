@@ -1,0 +1,68 @@
+.projects {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Title on the left, "View all projects" on the far right of the same row. */
+.projects-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.section-inner .projects-title {
+  margin-bottom: 0;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+.project-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+/* Long descriptions are cut off with an ellipsis; the full text is on /projects. */
+.project-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.55;
+}
+
+.project-readmore {
+  align-self: flex-start;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+.project-readmore:hover {
+  color: var(--color-primary-hover);
+}
+
