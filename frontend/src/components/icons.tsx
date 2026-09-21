@@ -26,25 +26,6 @@ export function IconPlay({ size = 16 }: IconProps) {
   )
 }
 
-export function IconDocument({ size = 16 }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
-      <path d="M14 3v5h5" />
-    </svg>
-  )
-}
-
 export function IconMail({ size = 20 }: IconProps) {
   return (
     <svg

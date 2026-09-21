@@ -3,8 +3,14 @@
   background: var(--color-bg);
 }
 
-/* Wider than the home sections so three cards sit comfortably side by side. */
+/*
+ * Wider than the home sections so three cards sit comfortably side by side.
+ * `position: relative; z-index: 1` lifts the content above the fixed
+ * background glows (AmbientGlow, z-index 0) so the cards sit in front of them.
+ */
 .projects-page .section-inner {
+  position: relative;
+  z-index: 1;
   max-width: 1240px;
 }
 

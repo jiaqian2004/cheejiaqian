@@ -37,10 +37,8 @@ export interface AboutField {
 export interface SiteContent {
   name: string
   initials: string
-  tagline: string
   heroGreeting: string
   heroRoleLines: string[]
-  bio: string
   aboutFields: AboutField[]
   experience: ExperienceEntry[]
   skills: SkillGroup[]
@@ -55,10 +53,8 @@ export interface SiteContent {
 export const siteContent: SiteContent = {
   name: 'Chee Jia Qian',
   initials: 'CJQ',
-  tagline: 'Software Engineer | Full Stack Developer',
   heroGreeting: "Hello! I'm",
   heroRoleLines: ['Software Engineering', 'Full Stack Developer'],
-  bio: 'Software Systems Development graduate with hands-on experience in enterprise software development across the full software development lifecycle. Skilled in requirement analysis, full-stack development, software testing, and technical documentation, with a strong interest in Full Stack development and IT project coordination.',
   aboutFields: [
     { label: 'Name', value: 'Chee Jia Qian' },
     { label: 'Role', value: 'Software Engineer & Full Stack Developer' },

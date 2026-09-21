@@ -1,3 +1,4 @@
+import AmbientGlow from '../components/AmbientGlow'
 import ProjectLinks from '../components/ProjectLinks'
 import ProjectStack from '../components/ProjectStack'
 import { siteContent } from '../content/siteContent'
@@ -6,6 +7,8 @@ import './ProjectsPage.css'
 export default function ProjectsPage() {
   return (
     <main className="projects-page">
+      <AmbientGlow />
+
       <div className="section-inner">
         <h1 className="section-title">
           All <span className="gradient-text">Projects</span>
