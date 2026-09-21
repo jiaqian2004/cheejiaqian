@@ -32,6 +32,20 @@
   z-index: 1;
 }
 
+/*
+ * The 3D canvas fills the whole first screen, and the scene's controls mark its
+ * wrapper element `touch-action: none` (inline), which tells the browser not to
+ * handle any touch gesture there. On a touch screen that means a finger that
+ * starts on the canvas can never scroll the page. `pan-y` hands vertical swipes
+ * back to the browser while horizontal drags still reach the 3D controls.
+ * `!important` is needed only to beat that inline style.
+ */
+@media (pointer: coarse) {
+  .hero-canvas-wrapper > div {
+    touch-action: pan-y !important;
+  }
+}
+
 .hero-text-left {
   position: absolute;
   left: 5vw;

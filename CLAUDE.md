@@ -45,6 +45,7 @@ frontend/
 ## 4. Conventions / Notes
 
 - Images: use WebP (same dimensions, quality ~82, keep transparency for cut-outs). Reference them from `public/` with an absolute path (`/img/name.webp`) and make the filename's case match exactly — the Vite dev server and Linux hosts are case-sensitive, so a mismatch silently returns `index.html` instead of the image. Delete the PNG original after converting.
+- Full-screen 3D canvas vs touch scrolling: the scene's controls put `touch-action: none` on the canvas wrapper, which stops a finger that starts on the canvas from scrolling the page. Hero.css overrides it to `pan-y` for touch devices (`@media (pointer: coarse)`); keep that if the 3D wrapper changes. Test touch scrolling with real touch events, not `window.scrollTo`.
 - Shared page background: the two fixed lime glows are the `AmbientGlow` component and should appear on every page. Put it before the page content and give that content `position: relative; z-index: 1` so it sits in front.
 - Responsive design: any visual layout change must be checked across multiple
   viewport widths (e.g. laptop ~1440px, common desktop ~1920px, larger
