@@ -3,6 +3,10 @@ import { usePathname } from '../lib/router'
 import Link from './Link'
 import './Navbar.css'
 
+// The file served from public/, and the name the visitor's browser saves it as.
+const RESUME_URL = '/resume/resume.pdf'
+const RESUME_DOWNLOAD_NAME = 'cheejiaqian_Resume.pdf'
+
 // `to` uses absolute paths ("/#about") so the links also work from other pages.
 // `hideOnMobile` links are dropped on narrow screens, where the bar can't fit them all.
 const NAV_LINKS = [
@@ -33,7 +37,7 @@ export default function Navbar() {
           </li>
         ))}
         <li>
-          <a className="navbar-resume-btn" href="/resume/resume.pdf" download>
+          <a className="navbar-resume-btn" href={RESUME_URL} download={RESUME_DOWNLOAD_NAME}>
             Resume
           </a>
         </li>

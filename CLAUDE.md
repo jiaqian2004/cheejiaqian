@@ -16,6 +16,8 @@ The whole site lives in `frontend/` — a React + TypeScript SPA built with Vite
 
 ```
 CLAUDE.md
+README.md               - public-facing overview (features, run, deploy); keep it accurate
+docs/                   - screenshots used by README.md
 frontend/
   index.html            - page title ("jiaqian") + favicon links
   public/               - static files served as-is, at the site root
@@ -36,7 +38,7 @@ frontend/
 ## 3. Frontend
 
 - Framework/tooling: React 19, TypeScript, Vite 8, ESLint. 3D: three, @react-three/fiber, @react-three/drei.
-- Pages: `/` (Hero, About, Work, Projects, Contact) and `/projects` (all projects). Routing is a small custom History-API router in `src/lib/router.ts` (no react-router). The hosting must serve `index.html` for every path, otherwise opening `/projects` directly returns 404.
+- Pages: `/` (Hero, About, Work, Projects, Contact) and `/projects` (all projects). Routing is a small custom History-API router in `src/lib/router.ts` (no react-router). The hosting must serve `index.html` for every path, otherwise opening `/projects` directly returns 404 (on Vercel, `frontend/vercel.json` does this).
 - Content lives in `src/content/siteContent.ts`; components read from it instead of hardcoding text. Adding a project = one new entry there (with a unique `slug`).
 - Key paths: `frontend/src/App.tsx`, `frontend/src/main.tsx`, `frontend/src/content/siteContent.ts`
 
