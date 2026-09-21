@@ -2,7 +2,7 @@
 
 An interactive personal portfolio built with **React, TypeScript and Three.js**. It features a draggable 3D character in the hero, a scroll-driven work timeline, and a project gallery — all fed from a single typed content file.
 
-<!-- Live site: add the deployed URL here once it is online. -->
+**Live site:** <https://cheejiaqian.vercel.app>
 
 ![Home page](docs/home.webp)
 
@@ -87,6 +87,12 @@ The build output (`frontend/dist`) is a fully static site, so any static host wo
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
 - **Single-page-app fallback:** the host must serve `index.html` for every path. Without it, opening `/projects` directly returns a 404 (navigating there from the home page still works). This repo already contains `frontend/vercel.json` for Vercel. Netlify needs a `_redirects` file containing `/* /index.html 200`; Cloudflare Pages does this by default.
+
+## License
+
+Copyright © 2026 Chee Jia Qian. All rights reserved.
+
+This repository is public so it can be viewed as a portfolio. The code and the content (résumé, photographs, character artwork, 3D model and text) may not be copied, reused or redistributed without my written permission. See [LICENSE](LICENSE).
 
 ## Contact
 

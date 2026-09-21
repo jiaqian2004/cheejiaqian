@@ -16,6 +16,7 @@ The whole site lives in `frontend/` — a React + TypeScript SPA built with Vite
 
 ```
 CLAUDE.md
+LICENSE                 - All Rights Reserved: viewable, but no permission to copy/reuse code or content
 README.md               - public-facing overview (features, run, deploy); keep it accurate
 docs/                   - screenshots used by README.md
 frontend/
