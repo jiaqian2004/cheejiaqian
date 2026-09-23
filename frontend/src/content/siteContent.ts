@@ -131,7 +131,7 @@ export const siteContent: SiteContent = {
       slug: 'smart-home-iot',
       title: 'Smart Home System (IoT)',
       category: 'IoT / Embedded',
-      stack: ['Node-RED', 'C++', 'Python', 'MQTT', 'GPIO', 'Arduino IDE', 'Sensors', 'ESP32', 'Raspberry Pi'],
+      stack: ['Node-RED', 'C++', 'Python', 'MQTT', 'GPIO', 'Arduino IDE', 'Sensors', 'ESP32', 'Raspberry Pi', 'Firebase'],
       description:
         'IoT-based smart home system integrating automated lighting, smart window control, smoke detection, automatic door opening, and fingerprint-based door access. Designed to improve home automation, safety, security, and convenience through interconnected sensors and smart devices.',
       image: '/img/iot.webp',
